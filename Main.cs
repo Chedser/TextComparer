@@ -17,7 +17,6 @@ namespace TextComparer{
         [DllImport("User32.dll")]
         public extern static int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
-
         public enum ScrollBarType : uint{
             SbHorz = 0,
             SbVert = 1,
@@ -27,7 +26,7 @@ namespace TextComparer{
 
         public enum Message : uint{
             WM_VSCROLL = 0x0115,
-            WM_HSCROLL = 0x0114,
+            WM_HSCROLL = 0x0114
         }
 
         public enum ScrollBarCommands : uint{
@@ -196,11 +195,11 @@ namespace TextComparer{
             diffs = DIFF.diff_main(RichTextBoxLeft.Text, RichTextBoxRight.Text);
             DIFF.diff_cleanupSemanticLossless(diffs);
 
-            //Получить отличия в список
+            //Получить различия в списоки
             chunklist1 = CollectChunks(RichTextBoxLeft);
             chunklist2 = CollectChunks(RichTextBoxRight);
 
-            //Подсветка отличий
+            //Подсветка различий
             PaintChunks(RichTextBoxLeft, chunklist1, ref outlist1);
             PaintChunks(RichTextBoxRight, chunklist2, ref outlist2);
 
@@ -254,6 +253,7 @@ namespace TextComparer{
             }
 
             RichTextBoxResult.Text = resultStr;
+
         }
 
         //Получить части текста
@@ -263,14 +263,18 @@ namespace TextComparer{
             foreach (Diff diff in diffs){
                 if (RTB == RichTextBoxRight && diff.operation == Operation.DELETE) continue; 
                 if (RTB == RichTextBoxLeft && diff.operation == Operation.INSERT) continue; 
-
+ 
                 Chunk chunk = new Chunk();
                 int length = RTB.TextLength;
                 RTB.AppendText(diff.text);
                 chunk.startpos = length;
                 chunk.length = diff.text.Length;
-                chunk.BackColor = (RTB == RichTextBoxLeft) ? colors1[(int)diff.operation]
-                                           : colors2[(int)diff.operation];
+
+                if (diff.operation != Operation.EQUAL){
+                    chunk.BackColor = (RTB == RichTextBoxLeft) ? colors1[(int)diff.operation]
+                                               : colors2[(int)diff.operation];
+                }
+
                 chunkList.Add(chunk);
          
             }
@@ -289,7 +293,6 @@ namespace TextComparer{
                     }
                 }
             }
-
 
 
         private void ButtonSave_Click(object sender, EventArgs e){
