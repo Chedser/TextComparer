@@ -1,0 +1,13 @@
+C:\Users\DNS\source\repos\TextComparer\bin\Debug\TextComparer.exe.config
+C:\Users\DNS\source\repos\TextComparer\bin\Debug\TextComparer.exe
+C:\Users\DNS\source\repos\TextComparer\bin\Debug\TextComparer.pdb
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.csproj.AssemblyReference.cache
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.Properties.Resources.resources
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.csproj.GenerateResource.cache
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.csproj.CoreCompileInputs.cache
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.exe
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.pdb
+C:\Users\DNS\source\repos\TextComparer\bin\Debug\en-001\TextComparer.resources.dll
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\en-001\TextComparer.resources.dll
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.MainForm.resources
+C:\Users\DNS\source\repos\TextComparer\obj\Debug\TextComparer.MainForm.en-001.resources
