@@ -259,12 +259,13 @@ namespace TextComparer{
                 charDiffsCount = firstFileCharDiffsCount + secondFileCharDiffsCount;
                 //Метрика, которая определяет насколько отличаются файлы
                 float diffIndex = (firstFileCharDiffsCount + secondFileCharDiffsCount) / (float)(firstFileLength + secondFileLength);
-                float simDistance = 1 - diffIndex;
+                float simIndex = 1 - diffIndex;
+
                 resultStr += $"First file by char diffs count: {firstFileCharDiffsCount}\n" +
                              $"Second file by char diffs count: {secondFileCharDiffsCount}\n" +
                              $"Total diffs by char count: {charDiffsCount}\n" +
                              $"Diff index (min -  0, max - 1): {diffIndex}\n" +
-                             $"Sim index (min -  0, max - 1): {simDistance}\n\n";
+                             $"Sim index (min -  0, max - 1): {simIndex}\n\n";
 
                 if (firstFileCharDiffsCount > 0) {
                     resultStr += $"First file diffs:\n{firstFileDiffs}\n";
