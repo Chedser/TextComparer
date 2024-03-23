@@ -307,12 +307,16 @@ namespace TextComparer{
 
         //Удаление лишних пробельных символов
         private string DeleteExcessSpaceCharacters(string str){
+             if (String.IsNullOrWhiteSpace(str)){
+                return str.Trim();
+            }
+
             string new_str = System.Text.RegularExpressions.Regex.Replace(str, @"[\n]+", "\n");
             new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[\t]+", "\t");
             new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[ ]+", " ");
 
-            if(new_str.Contains("\n\n") || 
-                new_str.Contains("  ") || 
+            if (new_str.Contains("\n\n") ||
+                new_str.Contains("  ") ||
                 new_str.Contains("\t\t")) {
                 DeleteExcessSpaceCharacters(new_str);
             }
