@@ -311,6 +311,12 @@ namespace TextComparer{
             new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[\t]+", "\t");
             new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[ ]+", " ");
 
+            if(new_str.Contains("\n\n") || 
+                new_str.Contains("  ") || 
+                new_str.Contains("\t\t")) {
+                DeleteExcessSpaceCharacters(new_str);
+            }
+
             return new_str.Trim();
         }
 
