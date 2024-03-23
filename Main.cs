@@ -267,12 +267,16 @@ namespace TextComparer{
                              $"Diff index (min -  0, max - 1): {diffIndex}\n" +
                              $"Sim index (min -  0, max - 1): {simIndex}\n\n";
 
-                if (firstFileCharDiffsCount > 0) {
+                if (firstFileCharDiffsCount > 0){
                     resultStr += $"First file diffs:\n{firstFileDiffs}\n";
+                }else {
+                    resultStr += $"No diffs in first file";
                 }
 
                 if (secondFileCharDiffsCount > 0){
                     resultStr += $"Second file diffs:\n{secondFileDiffs}";
+                }else{
+                    resultStr += $"No diffs in second file";
                 }
 
                 ButtonSave.Enabled = true;
