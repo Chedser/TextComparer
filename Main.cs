@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using DiffMatchPatch;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 
 namespace TextComparer{
@@ -307,21 +308,19 @@ namespace TextComparer{
 
         //Удаление лишних пробельных символов
         private string DeleteExcessSpaceCharacters(string str){
-             if (String.IsNullOrWhiteSpace(str)){
-                return str.Trim();
+               if (String.IsNullOrWhiteSpace(str)){
+                return str;
             }
 
-            string new_str = System.Text.RegularExpressions.Regex.Replace(str, @"[\n]+", "\n");
-            new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[\t]+", "\t");
-            new_str = System.Text.RegularExpressions.Regex.Replace(new_str, @"[ ]+", " ");
+            Regex regex1 = new Regex(@"[ ]+");
+            Regex regex2 = new Regex(@"[\r\n]+");
+            Regex regex3 = new Regex(@"[\t]+");
 
-            if (new_str.Contains("\n\n") ||
-                new_str.Contains("  ") ||
-                new_str.Contains("\t\t")) {
-                DeleteExcessSpaceCharacters(new_str);
-            }
+           string new_str = regex1.Replace(str, " ");
+           new_str = regex2.Replace(new_str, "\n");
+           new_str = regex3.Replace(new_str, "\t");
 
-            return new_str.Trim();
+           return new_str;
         }
 
     }
