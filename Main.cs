@@ -217,14 +217,42 @@ namespace TextComparer{
 
                 string firstFileDiffs = "";
                 string secondFileDiffs = "";
+                string strToWrite;
 
                 foreach (string str in outlist1){
-                    firstFileDiffs += str + "\n";
+                    strToWrite = str;
+
+                    switch (str) {
+                        case "\n": strToWrite = "[LINE BREAK]";
+                            break;
+                        case "\t":
+                            strToWrite = "[TAB]";
+                            break;
+                        case " ":
+                            strToWrite = "[SPACE]";
+                            break;
+                    }
+                    
+                    firstFileDiffs += strToWrite.TrimStart('\n') + "\n";
                     firstFileCharDiffsCount += str.Length;
                 }
                  
                 foreach (string str in outlist2){
-                    secondFileDiffs += str + "\n";
+                    strToWrite = str;
+
+                    switch (str){
+                        case "\n":
+                            strToWrite = "[LINE BREAK]";
+                            break;
+                        case "\t":
+                            strToWrite = "[TAB]";
+                            break;
+                        case " ":
+                            strToWrite = "[SPACE]";
+                            break;
+                    }
+
+                    secondFileDiffs += strToWrite.TrimStart('\n') + "\n";
                     secondFileCharDiffsCount += str.Length;
                 }
 
@@ -239,7 +267,7 @@ namespace TextComparer{
                              $"Sim index (min -  0, max - 1): {simDistance}\n\n";
 
                 if (firstFileCharDiffsCount > 0) {
-                    resultStr += $"First file diffs:\n{firstFileDiffs}\n\n";
+                    resultStr += $"First file diffs:\n{firstFileDiffs}\n";
                 }
 
                 if (secondFileCharDiffsCount > 0){
