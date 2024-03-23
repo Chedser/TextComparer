@@ -51,8 +51,8 @@ namespace TextComparer{
         List<string> outlist2 = new List<string>();
 
         //Цвета подсветки
-        Color[] colors1 = new Color[3] { Color.LightGreen, Color.LightSalmon, Color.White };
-        Color[] colors2 = new Color[3] { Color.LightSalmon, Color.LightGreen, Color.White };
+        Color[] colors1 = new Color[2] { Color.LightGreen, Color.LightSalmon };
+        Color[] colors2 = new Color[2] { Color.LightSalmon, Color.LightGreen };
 
         int firstFileLength = 0;
         int secondFileLength = 0;
