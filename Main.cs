@@ -97,15 +97,6 @@ namespace TextComparer{
 
             //Читаем файл в текстовое поле
             string txt = File.ReadAllText(filename);
-            if (ContainsOnlySpaceCharacters(txt)) {
-                MessageBox.Show(
-                        "File contains only space characters",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                return;
-            }
-            
             string handledTxt = DeleteExcessSpaceCharacters(txt);
 
             if (handledTxt.Length == 0) {
@@ -152,15 +143,6 @@ namespace TextComparer{
 
             //Читаем файл в текстовое поле
             string txt = File.ReadAllText(filename);
-            if (ContainsOnlySpaceCharacters(txt)){
-                MessageBox.Show(
-                        "File contains only space characters",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                return;
-            }
-
             string handledTxt = DeleteExcessSpaceCharacters(txt);
 
             if (handledTxt.Length == 0){
@@ -233,14 +215,14 @@ namespace TextComparer{
                                 $"Second file diffs count: {secondFileDiffsCount}\n" +
                                 $"Total diffs count: {diffsCount}\n\n";
 
-                string firstFileDiffs = "";
-                string secondFileDiffs = "";
-                string strToWrite;
+            string firstFileDiffs = "";
+            string secondFileDiffs = "";
+            string strToWrite;
 
-                foreach (string str in outlist1){
-                    strToWrite = str;
+            foreach (string str in outlist1){
+                 strToWrite = str;
 
-                    switch (str) {
+                 switch (str) {
                         case "\n": strToWrite = "[LINE BREAK]";
                             break;
                         case "\t":
@@ -255,7 +237,7 @@ namespace TextComparer{
                     firstFileCharDiffsCount += str.Length;
                 }
                  
-                foreach (string str in outlist2){
+            foreach (string str in outlist2){
                     strToWrite = str;
 
                     switch (str){
@@ -362,7 +344,7 @@ namespace TextComparer{
 
         //Удаление лишних пробельных символов
         private string DeleteExcessSpaceCharacters(string str){
-            if (String.IsNullOrWhiteSpace(str)) return str;
+            if (String.IsNullOrWhiteSpace(str)) return String.Empty;
 
             Regex regex1 = new Regex(@"[ ]+");
             Regex regex2 = new Regex(@"[\r\n]+");
@@ -371,15 +353,8 @@ namespace TextComparer{
            string new_str = regex1.Replace(str, " ");
            new_str = regex2.Replace(new_str, "\n");
            new_str = regex3.Replace(new_str, "\t");
-
            
-
-           return new_str;
-        }
-
-        private bool ContainsOnlySpaceCharacters(string str) {
-            return Regex.IsMatch(str, @"/ ^\s *$/");
- 
+            return new_str;
         }
 
     }
