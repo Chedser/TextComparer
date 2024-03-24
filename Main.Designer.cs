@@ -141,6 +141,7 @@ namespace TextComparer{
             // CheckBoxSyncScroll
             // 
             this.CheckBoxSyncScroll.AutoSize = true;
+            this.CheckBoxSyncScroll.Enabled = false;
             this.CheckBoxSyncScroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.CheckBoxSyncScroll.Location = new System.Drawing.Point(261, 444);
             this.CheckBoxSyncScroll.Name = "CheckBoxSyncScroll";

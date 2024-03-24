@@ -17,6 +17,10 @@ namespace TextComparer{
         [DllImport("User32.dll")]
         public extern static int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private extern static int GetWindowLong(IntPtr hWnd, int index);
+
+
         public enum ScrollBarType : uint{
             SbHorz = 0,
             SbVert = 1,
@@ -67,6 +71,8 @@ namespace TextComparer{
 
         string resultStr; //Строка результата для отображение в RichTextBox сохранения файла
 
+        bool leftScrollIsVisible = false;
+        bool rightScrollIsVisible = false;
 
         public struct Chunk{
             public int startpos;
@@ -119,6 +125,18 @@ namespace TextComparer{
 
             RichTextBoxResult.Text = "";
 
+            if (VerticalScrollBarVisible(RichTextBoxLeft)){
+                leftScrollIsVisible = true;
+            }else {
+                leftScrollIsVisible = false;
+            };
+
+            if (leftScrollIsVisible && rightScrollIsVisible){
+                CheckBoxSyncScroll.Enabled = true;
+            }else {
+                CheckBoxSyncScroll.Enabled = false;
+            }
+
             //Активация кнопки Сравнить, если оба файла загружены
             if (CanCompareFiles(leftFileIsLoaded, rightFileIsLoaded)) {
                 CompareButton.Enabled = true;
@@ -163,6 +181,18 @@ namespace TextComparer{
             LabelFileRightName.Text = TrunkString(filename);
 
             RichTextBoxResult.Text = "";
+
+            if (VerticalScrollBarVisible(RichTextBoxRight)){
+                rightScrollIsVisible = true;
+            } else{
+                rightScrollIsVisible = false;
+            };
+
+            if (leftScrollIsVisible && rightScrollIsVisible){
+                CheckBoxSyncScroll.Enabled = true;
+            }else{
+                CheckBoxSyncScroll.Enabled = false;
+            }
 
             //Активация кнопки Сравнить, если оба файла загружены
             if (CanCompareFiles(leftFileIsLoaded, rightFileIsLoaded)){
@@ -355,6 +385,12 @@ namespace TextComparer{
            new_str = regex3.Replace(new_str, "\t");
            
             return new_str;
+        }
+
+
+        public static bool VerticalScrollBarVisible(Control ctl){
+            int style = GetWindowLong(ctl.Handle, -16);
+            return (style & 0x200000) != 0;
         }
 
     }
