@@ -97,11 +97,20 @@ namespace TextComparer{
 
             //Читаем файл в текстовое поле
             string txt = File.ReadAllText(filename);
+            if (ContainsOnlySpaceCharacters(txt)) {
+                MessageBox.Show(
+                        "File contains only space characters",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                return;
+            }
+            
             string handledTxt = DeleteExcessSpaceCharacters(txt);
 
             if (handledTxt.Length == 0) {
                 MessageBox.Show(
-                            "File contains only space characters",
+                            "File is empty",
                             "Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -143,6 +152,15 @@ namespace TextComparer{
 
             //Читаем файл в текстовое поле
             string txt = File.ReadAllText(filename);
+            if (ContainsOnlySpaceCharacters(txt)){
+                MessageBox.Show(
+                        "File contains only space characters",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                return;
+            }
+
             string handledTxt = DeleteExcessSpaceCharacters(txt);
 
             if (handledTxt.Length == 0){
@@ -344,9 +362,7 @@ namespace TextComparer{
 
         //Удаление лишних пробельных символов
         private string DeleteExcessSpaceCharacters(string str){
-               if (String.IsNullOrWhiteSpace(str)){
-                return str;
-            }
+            if (String.IsNullOrWhiteSpace(str)) return str;
 
             Regex regex1 = new Regex(@"[ ]+");
             Regex regex2 = new Regex(@"[\r\n]+");
@@ -356,7 +372,14 @@ namespace TextComparer{
            new_str = regex2.Replace(new_str, "\n");
            new_str = regex3.Replace(new_str, "\t");
 
+           
+
            return new_str;
+        }
+
+        private bool ContainsOnlySpaceCharacters(string str) {
+            return Regex.IsMatch(str, @"/ ^\s *$/");
+ 
         }
 
     }
