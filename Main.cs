@@ -101,7 +101,7 @@ namespace TextComparer{
 
             if (handledTxt.Length == 0) {
                 MessageBox.Show(
-                            "File is empty",
+                            "File contains only space characters",
                             "Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -361,5 +361,3 @@ namespace TextComparer{
 
     }
 }
-    
-
